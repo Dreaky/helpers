@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  master:
+    image: acsdevrobotfwreg.azurecr.io/locust_identify_hadware:0.7.0
+    ports:
+     - "8089:8089"
+     - "80:80"
+    command:  -f /mnt/locust/locust_identifyHardware.py --master
+
+  worker:
+    image: acsdevrobotfwreg.azurecr.io/locust_identify_hadware:0.7.0
+    command: -f /mnt/locust/locust_identifyHardware.py --worker --master-host master
+
